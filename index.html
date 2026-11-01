@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MRS VIP — Além do Palco | Case Prêmio Aberje 2026</title>
+<meta name="description" content="Como uma premiação se transformou em plataforma cultural — case MRS VIP, Prêmio Aberje 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#050d24; --navy2:#0a1a45; --navy3:#13285f; --gold:#d9b25a; --gold2:#f5dc94; --gold3:#9b7024;
+  --mrs:#ffd200; --ink:#0b1b46;
+  --ease:cubic-bezier(.7,0,.3,1); --out:cubic-bezier(.16,1,.3,1);
+  --goldgrad:linear-gradient(100deg,#9b7024 0%,#e7c46e 22%,#fff1bf 40%,#d9b25a 58%,#a77a2b 80%,#f3d88b 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#000;overflow:hidden;font-family:Montserrat,system-ui,sans-serif;color:#fff;-webkit-font-smoothing:antialiased}
+#viewport{position:fixed;inset:0;overflow:hidden;background:radial-gradient(ellipse at center,#0a1638 0%,#000 70%)}
+#deck{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:50% 50%;perspective:2400px;perspective-origin:50% 50%}
+.slide{position:absolute;inset:0;overflow:hidden;visibility:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--navy);will-change:transform}
+.slide.on{visibility:visible}
+.slide.cur{z-index:3}
+
+/* ---------- backgrounds ---------- */
+.bg{position:absolute;inset:-40px;transform:translate3d(calc(var(--mx,0)*-18px),calc(var(--my,0)*-12px),0);transition:transform .6s var(--out)}
+.bg img,.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.slide.on .kb{animation:kb 16s ease-out both}
+.slide.on .kb.r{animation-name:kbR}
+@keyframes kb{from{transform:scale(1.16) translate(1.5%,1%)}to{transform:scale(1.02) translate(0,0)}}
+@keyframes kbR{from{transform:scale(1.04) translate(0,0)}to{transform:scale(1.16) translate(-1.5%,-1%)}}
+.shade{position:absolute;inset:0;pointer-events:none}
+.sh-l{background:linear-gradient(90deg,rgba(3,8,24,.92) 0%,rgba(3,8,24,.55) 38%,rgba(3,8,24,0) 65%)}
+.sh-r{background:linear-gradient(270deg,rgba(3,8,24,.92) 0%,rgba(3,8,24,.55) 38%,rgba(3,8,24,0) 65%)}
+.sh-b{background:linear-gradient(0deg,rgba(3,8,24,.95) 0%,rgba(3,8,24,.55) 32%,rgba(3,8,24,0) 60%)}
+.sh-t{background:linear-gradient(180deg,rgba(3,8,24,.9) 0%,rgba(3,8,24,.45) 30%,rgba(3,8,24,0) 55%)}
+.sh-v{background:radial-gradient(ellipse at center,rgba(0,0,0,0) 45%,rgba(0,0,0,.65) 100%)}
+.sh-bl{background:radial-gradient(ellipse at 0% 100%,rgba(3,8,24,.95) 0%,rgba(3,8,24,.6) 30%,rgba(3,8,24,0) 60%)}
+.sh-tr{background:radial-gradient(ellipse at 100% 0%,rgba(3,8,24,.95) 0%,rgba(3,8,24,.6) 30%,rgba(3,8,24,0) 60%)}
+.sh-tl{background:radial-gradient(ellipse at 0% 0%,rgba(3,8,24,.95) 0%,rgba(3,8,24,.6) 32%,rgba(3,8,24,0) 62%)}
+.bw img{filter:grayscale(1) contrast(1.1)}
+
+/* stage beams */
+.beams{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:.55}
+.beams i{position:absolute;top:-20%;width:520px;height:150%;background:linear-gradient(180deg,rgba(150,180,255,.55),rgba(120,150,255,0) 75%);clip-path:polygon(46% 0,54% 0,100% 100%,0 100%);filter:blur(10px);transform-origin:50% 0}
+.beams i:nth-child(1){left:8%;animation:sweep 7s ease-in-out infinite alternate}
+.beams i:nth-child(2){left:62%;animation:sweep 9s ease-in-out -3s infinite alternate-reverse}
+.beams.gold i{background:linear-gradient(180deg,rgba(255,215,130,.55),rgba(255,200,100,0) 75%)}
+@keyframes sweep{from{transform:rotate(-18deg)}to{transform:rotate(18deg)}}
+
+/* ---------- typography ---------- */
+.gold{background:var(--goldgrad);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{from{background-position:0% 0}to{background-position:-220% 0}}
+.kicker{font-size:22px;letter-spacing:.32em;text-transform:uppercase;font-weight:600;color:var(--gold2)}
+.cap{position:absolute;font-size:44px;line-height:1.28;font-weight:300;text-shadow:0 2px 24px rgba(0,0,0,.6);max-width:820px}
+.cap b{font-weight:700}
+.cap .hl{font-weight:800;letter-spacing:.02em}
+.big{font-size:64px;line-height:1.12;font-weight:300}
+.ttl{font-size:30px;letter-spacing:.18em;font-weight:600;text-transform:uppercase}
+.hairline{display:block;height:2px;width:120px;background:var(--goldgrad);margin:26px 0}
+
+/* header bar for content slides */
+.hbar{position:absolute;left:0;top:0;right:0;height:120px;display:flex;align-items:center;padding:0 90px;background:linear-gradient(90deg,rgba(10,26,69,.95),rgba(10,26,69,.35));border-bottom:1px solid rgba(217,178,90,.35)}
+.hbar h2{font-size:30px;letter-spacing:.22em;font-weight:600}
+.hbar .vip{margin-left:auto;height:62px;opacity:.95}
+
+/* ---------- entrance animations ---------- */
+.a{opacity:0}
+.slide.on .a{animation:var(--an,up) 1.1s var(--out) calc(var(--d,0s) + .55s) both}
+@keyframes up{from{opacity:0;transform:translate3d(0,70px,0)}to{opacity:1;transform:none}}
+@keyframes down{from{opacity:0;transform:translate3d(0,-60px,0)}to{opacity:1;transform:none}}
+@keyframes left{from{opacity:0;transform:translate3d(-110px,0,0)}to{opacity:1;transform:none}}
+@keyframes right{from{opacity:0;transform:translate3d(110px,0,0)}to{opacity:1;transform:none}}
+@keyframes zoom{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:none}}
+@keyframes blur{from{opacity:0;filter:blur(24px);transform:scale(1.08)}to{opacity:1;filter:none;transform:none}}
+@keyframes flip{from{opacity:0;transform:perspective(1200px) rotateY(-80deg) translateZ(-200px)}to{opacity:1;transform:none}}
+@keyframes flipx{from{opacity:0;transform:perspective(1200px) rotateX(80deg) translateY(60px)}to{opacity:1;transform:none}}
+@keyframes depth{from{opacity:0;transform:perspective(1400px) translateZ(-700px) rotateX(18deg)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.u{--an:up}.dn{--an:down}.l{--an:left}.r{--an:right}.z{--an:zoom}.bl{--an:blur}.f{--an:flip}.fx{--an:flipx}.dp{--an:depth}.fd{--an:fade}
+/* word reveal */
+.w{display:inline-block;opacity:0;white-space:pre}
+.slide.on .w{animation:wIn .9s var(--out) both}
+.slide.on .w.gold{animation:wIn .9s var(--out) both,shine 6s linear 1.5s infinite}
+@keyframes wIn{from{opacity:0;transform:translateY(.6em) rotateX(-70deg);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+/* mask reveal line */
+.mask{display:block;overflow:hidden}
+.mask>span{display:block;transform:translateY(110%)}
+.slide.on .mask>span{animation:mUp 1.1s var(--out) calc(var(--d,0s) + .6s) both}
+@keyframes mUp{to{transform:none}}
+
+/* ---------- 3D Oscar render ---------- */
+.oscar{position:absolute;bottom:-40px;width:520px;height:1040px;perspective:1600px}
+.oscar .rays{position:absolute;left:50%;top:38%;width:1500px;height:1500px;margin:-750px 0 0 -750px;background:repeating-conic-gradient(from 0deg,rgba(255,220,140,.16) 0deg 4deg,rgba(255,220,140,0) 4deg 14deg);-webkit-mask:radial-gradient(circle,#000 0%,transparent 62%);mask:radial-gradient(circle,#000 0%,transparent 62%);animation:spin 60s linear infinite}
+.oscar .halo{position:absolute;left:50%;top:30%;width:760px;height:760px;margin:-380px 0 0 -380px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,120,.45),rgba(255,190,80,.08) 45%,transparent 70%);animation:pulse 4s ease-in-out infinite}
+.oscar .body{position:absolute;inset:0;transform-style:preserve-3d;animation:turn 9s ease-in-out infinite}
+.oscar .body img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:bottom;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6)) drop-shadow(0 0 40px rgba(255,200,90,.35))}
+.oscar .sheen{position:absolute;inset:0;-webkit-mask:url(assets/oscar.webp) bottom/contain no-repeat;mask:url(assets/oscar.webp) bottom/contain no-repeat;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.75) 48%,transparent 60%);background-size:300% 100%;mix-blend-mode:overlay;animation:sheen 4.5s ease-in-out infinite}
+@keyframes turn{0%,100%{transform:rotateY(-14deg) translateY(0)}50%{transform:rotateY(14deg) translateY(-18px)}}
+@keyframes sheen{0%{background-position:120% 0}60%,100%{background-position:-120% 0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:.7;transform:scale(.95)}50%{opacity:1;transform:scale(1.05)}}
+.floaty{animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* frames from KV */
+.corner{position:absolute;width:420px;height:300px;pointer-events:none}
+.corner.tr{right:70px;top:60px;border-top:3px solid #efe1bd;border-right:3px solid #efe1bd}
+.corner.bl{left:70px;bottom:60px;border-bottom:3px solid #efe1bd;border-left:3px solid #efe1bd}
+.slide.on .corner{animation:drawC 1.6s var(--out) .5s both}
+@keyframes drawC{from{clip-path:inset(0 0 100% 100%)}to{clip-path:inset(0 0 0 0)}}
+
+/* glass card */
+.card{background:linear-gradient(145deg,rgba(19,40,95,.82),rgba(7,16,44,.88));border:1px solid rgba(217,178,90,.35);border-radius:22px;box-shadow:0 30px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(10px)}
+.card.goldc{background:linear-gradient(145deg,#e6c472,#b98a35);color:#1a1205;border:none}
+.ico{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(245,220,148,.2),rgba(217,178,90,.06));border:1px solid rgba(217,178,90,.5);color:var(--gold2);flex:none}
+.ico svg{width:34px;height:34px}
+.goldc .ico{background:rgba(26,18,5,.12);border-color:rgba(26,18,5,.3);color:#1a1205}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* photo frames */
+.ph{position:absolute;overflow:hidden;border-radius:18px;box-shadow:0 40px 90px rgba(0,0,0,.55)}
+.tilt{transform-style:preserve-3d;transition:transform .5s var(--out)}
+
+/* film strip */
+.film{position:absolute;left:0;right:0;height:260px;background:#0a0a0a;overflow:hidden;border-top:18px solid #0a0a0a;border-bottom:18px solid #0a0a0a}
+.film:before,.film:after{content:"";position:absolute;left:0;right:0;height:14px;background:repeating-linear-gradient(90deg,transparent 0 14px,#d8d8d8 14px 30px,transparent 30px 44px);z-index:2}
+.film:before{top:-16px}.film:after{bottom:-16px}
+.film .track{display:flex;gap:14px;height:100%;width:max-content;animation:roll 40s linear infinite}
+.film .track img{height:100%;width:auto;aspect-ratio:3/2;object-fit:cover;filter:saturate(1.1)}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* stars walk */
+.starwalk{position:absolute;left:0;right:0;bottom:70px;height:120px;perspective:900px}
+.starwalk span{position:absolute;bottom:0;width:90px;height:90px;color:var(--gold2);filter:drop-shadow(0 0 18px rgba(255,210,120,.8));transform:rotateX(55deg)}
+.slide.on .starwalk span{animation:starPop 1s var(--out) both}
+@keyframes starPop{from{opacity:0;transform:rotateX(55deg) translateY(60px) scale(.3)}to{opacity:1;transform:rotateX(55deg)}}
+
+/* stats */
+.num{font-weight:800;line-height:1;letter-spacing:-.01em}
+.lbl{font-weight:400;opacity:.85;line-height:1.3}
+
+/* gauges */
+.gauge{position:relative}
+.gauge svg{transform:rotate(-90deg)}
+.gauge circle{fill:none;stroke-width:12}
+.gauge .trk{stroke:rgba(255,255,255,.1)}
+.gauge .val{stroke:url(#gg);stroke-linecap:round;stroke-dasharray:var(--c);stroke-dashoffset:var(--c);transition:none}
+.slide.on .gauge .val{animation:gfill 2.2s var(--out) 1s forwards}
+@keyframes gfill{to{stroke-dashoffset:calc(var(--c) * (1 - var(--p)))}}
+.gauge .in{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+
+/* timeline */
+.tl-line{position:absolute;height:3px;background:var(--goldgrad);transform-origin:0 50%;transform:scaleX(0)}
+.slide.on .tl-line{animation:grow 2.4s var(--out) .9s forwards}
+@keyframes grow{to{transform:scaleX(1)}}
+.node{position:absolute;width:250px;text-align:center;transform:translateX(-50%)}
+.node .dot{width:118px;height:118px;margin:0 auto;border-radius:50%;display:grid;place-content:center;background:radial-gradient(circle at 35% 30%,#1d3a85,#071233);border:3px solid var(--gold);box-shadow:0 0 0 10px rgba(217,178,90,.1),0 20px 40px rgba(0,0,0,.5)}
+.node .dot b{font-size:44px;font-weight:800;line-height:1}
+.node .dot small{font-size:15px;letter-spacing:.2em;color:var(--gold2);font-weight:600}
+.node.hot .dot{background:radial-gradient(circle at 35% 30%,#fff0b8,#c89a3c);color:#1a1205;animation:hot 2s ease-in-out infinite}
+.node.hot .dot small{color:#3b2a08}
+@keyframes hot{0%,100%{box-shadow:0 0 0 10px rgba(217,178,90,.25),0 0 40px rgba(255,210,120,.5)}50%{box-shadow:0 0 0 22px rgba(217,178,90,.08),0 0 90px rgba(255,210,120,.9)}}
+.node h4{margin-top:24px;font-size:20px;letter-spacing:.08em;font-weight:800;color:var(--gold2)}
+.node p{margin-top:10px;font-size:16.5px;line-height:1.4;opacity:.85}
+.node .ni{width:44px;height:44px;margin:0 auto 14px;color:var(--gold2)}
+
+/* orbit */
+.orbit{position:absolute;border-radius:50%;border:1.5px dashed rgba(217,178,90,.45)}
+.orbit .rot{position:absolute;inset:0;animation:spin 50s linear infinite}
+.orbit.inner{border-color:rgba(255,255,255,.35)}
+.orbit.inner .rot{animation-duration:36s;animation-direction:reverse}
+.chan{position:absolute;width:150px;margin:-75px 0 0 -75px;text-align:center}
+.chan .bub{width:104px;height:104px;margin:0 auto;border-radius:28px;background:#fff;display:grid;place-items:center;box-shadow:0 18px 40px rgba(0,0,0,.45),0 0 0 6px rgba(217,178,90,.25)}
+.chan .bub img{width:62px;height:62px;object-fit:contain}
+.chan span{display:block;margin-top:12px;font-size:17px;font-weight:600;line-height:1.2;text-shadow:0 2px 10px #000}
+.orbit .rot .chan .cr{animation:spin 50s linear infinite reverse}
+.orbit.inner .rot .chan .cr{animation:spin 36s linear infinite}
+
+/* phones */
+.phone{position:absolute;width:200px;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.6);border:3px solid rgba(255,255,255,.12)}
+.phone img{width:100%;display:block}
+.quote{position:relative;padding:44px 40px 36px;font-size:21px;line-height:1.5;font-weight:400;font-style:italic}
+.quote:before{content:"\201C";position:absolute;left:22px;top:-22px;font-size:120px;line-height:1;font-style:normal;color:var(--gold);font-family:Georgia,serif}
+
+/* plane path */
+.plane{position:absolute;width:56px;height:56px;offset-path:path('M 0 260 C 120 40, 380 20, 520 160');offset-rotate:auto;offset-distance:0%;color:var(--gold2)}
+.slide.on .plane{animation:fly 6s ease-in-out 1s infinite}
+@keyframes fly{0%{offset-distance:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{offset-distance:100%;opacity:0}}
+
+/* ---------- 3D page transitions ---------- */
+@keyframes cubeOutL{0%{transform:none}50%{transform:translateX(-50%) translateZ(-260px) rotateY(-45deg);filter:brightness(.7)}100%{transform:translateX(-100%) rotateY(-90deg);filter:brightness(.3)}}
+@keyframes cubeInL{0%{transform:translateX(100%) rotateY(90deg);filter:brightness(.3)}50%{transform:translateX(50%) translateZ(-260px) rotateY(45deg);filter:brightness(.7)}100%{transform:none;filter:none}}
+@keyframes cubeOutR{0%{transform:none}50%{transform:translateX(50%) translateZ(-260px) rotateY(45deg);filter:brightness(.7)}100%{transform:translateX(100%) rotateY(90deg);filter:brightness(.3)}}
+@keyframes cubeInR{0%{transform:translateX(-100%) rotateY(-90deg);filter:brightness(.3)}50%{transform:translateX(-50%) translateZ(-260px) rotateY(-45deg);filter:brightness(.7)}100%{transform:none;filter:none}}
+@keyframes carOutL{to{transform:translateX(-150%) scale(.4) rotateY(-65deg);filter:brightness(.4)}}
+@keyframes carInL{from{transform:translateX(200%) scale(.4) rotateY(65deg);filter:brightness(.4)}to{transform:none;filter:none}}
+@keyframes carOutR{to{transform:translateX(150%) scale(.4) rotateY(65deg);filter:brightness(.4)}}
+@keyframes carInR{from{transform:translateX(-200%) scale(.4) rotateY(-65deg);filter:brightness(.4)}to{transform:none;filter:none}}
+@keyframes flipOutL{0%{transform:none}50%,100%{transform:translateZ(-900px) rotateY(90deg);opacity:.2}}
+@keyframes flipInL{0%,50%{transform:translateZ(-900px) rotateY(-90deg);opacity:0}100%{transform:none;opacity:1}}
+@keyframes flipOutR{0%{transform:none}50%,100%{transform:translateZ(-900px) rotateY(-90deg);opacity:.2}}
+@keyframes flipInR{0%,50%{transform:translateZ(-900px) rotateY(90deg);opacity:0}100%{transform:none;opacity:1}}
+@keyframes zoomOutL{to{transform:scale(1.6) translateZ(200px);opacity:0;filter:blur(14px)}}
+@keyframes zoomInL{from{transform:scale(.55) translateZ(-600px);opacity:0;filter:blur(10px)}to{transform:none;opacity:1;filter:none}}
+@keyframes zoomOutR{to{transform:scale(.55);opacity:0;filter:blur(10px)}}
+@keyframes zoomInR{from{transform:scale(1.6);opacity:0;filter:blur(14px)}to{transform:none;opacity:1;filter:none}}
+@keyframes roomOutL{to{transform:translateX(-100%) rotateY(90deg);filter:brightness(.3)}}
+@keyframes roomInL{from{transform:translateX(100%) rotateY(-90deg);filter:brightness(.3)}to{transform:none;filter:none}}
+@keyframes roomOutR{to{transform:translateX(100%) rotateY(-90deg);filter:brightness(.3)}}
+@keyframes roomInR{from{transform:translateX(-100%) rotateY(90deg);filter:brightness(.3)}to{transform:none;filter:none}}
+@keyframes cubeVOutL{0%{transform:none}50%{transform:translateY(-50%) translateZ(-260px) rotateX(45deg);filter:brightness(.7)}100%{transform:translateY(-100%) rotateX(90deg);filter:brightness(.3)}}
+@keyframes cubeVInL{0%{transform:translateY(100%) rotateX(-90deg);filter:brightness(.3)}50%{transform:translateY(50%) translateZ(-260px) rotateX(-45deg);filter:brightness(.7)}100%{transform:none;filter:none}}
+@keyframes cubeVOutR{0%{transform:none}50%{transform:translateY(50%) translateZ(-260px) rotateX(-45deg);filter:brightness(.7)}100%{transform:translateY(100%) rotateX(-90deg);filter:brightness(.3)}}
+@keyframes cubeVInR{0%{transform:translateY(-100%) rotateX(90deg);filter:brightness(.3)}50%{transform:translateY(-50%) translateZ(-260px) rotateX(45deg);filter:brightness(.7)}100%{transform:none;filter:none}}
+
+/* overlays */
+#fx{position:absolute;inset:0;width:1920px;height:1080px;pointer-events:none;z-index:20}
+#flare{position:absolute;inset:0;pointer-events:none;z-index:21;background:linear-gradient(100deg,transparent 30%,rgba(255,225,150,.32) 48%,rgba(255,255,255,.5) 50%,rgba(255,225,150,.32) 52%,transparent 70%);background-size:300% 100%;background-position:150% 0;opacity:0;mix-blend-mode:screen}
+#flare.go{animation:flare 1.2s var(--ease)}
+@keyframes flare{0%{opacity:0;background-position:150% 0}30%{opacity:1}100%{opacity:0;background-position:-50% 0}}
+#grain{position:absolute;inset:0;pointer-events:none;z-index:22;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .8s steps(4) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}}
+
+/* UI */
+#ui{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;gap:14px;padding:14px 22px;background:linear-gradient(0deg,rgba(0,0,0,.65),transparent);opacity:.25;transition:opacity .4s}
+#ui:hover,body.idle-off #ui{opacity:1}
+#ui button{all:unset;cursor:pointer;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(217,178,90,.4);color:var(--gold2);transition:background .2s,transform .2s}
+#ui button:hover{background:rgba(217,178,90,.25);transform:scale(1.08)}
+#ui button svg{width:20px;height:20px}
+#bar{flex:1;height:4px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden;cursor:pointer}
+#bar i{display:block;height:100%;width:0;background:var(--goldgrad);transition:width .8s var(--out)}
+#count{font-size:14px;letter-spacing:.12em;color:var(--gold2);min-width:74px;text-align:right;font-variant-numeric:tabular-nums}
+#chapter{font-size:12px;letter-spacing:.25em;text-transform:uppercase;opacity:.7;min-width:220px}
+#menu{position:fixed;top:0;bottom:0;right:0;width:380px;z-index:60;background:rgba(5,13,36,.96);border-left:1px solid rgba(217,178,90,.3);transform:translateX(100%);transition:transform .6s var(--out);overflow:auto;padding:30px 26px}
+#menu.open{transform:none}
+#menu h3{font-size:13px;letter-spacing:.3em;color:var(--gold2);margin:22px 0 10px;font-weight:600}
+#menu a{display:flex;gap:12px;padding:9px 10px;border-radius:10px;color:#fff;text-decoration:none;font-size:14px;opacity:.75;cursor:pointer}
+#menu a:hover,#menu a.act{background:rgba(217,178,90,.15);opacity:1}
+#menu a em{font-style:normal;color:var(--gold);min-width:24px;font-variant-numeric:tabular-nums}
+#hint{position:fixed;left:50%;top:24px;transform:translateX(-50%);z-index:55;font-size:13px;letter-spacing:.15em;background:rgba(0,0,0,.55);padding:10px 18px;border-radius:30px;border:1px solid rgba(217,178,90,.35);color:var(--gold2);transition:opacity 1s}
+@media (prefers-reduced-motion:reduce){.slide.on .a,.slide.on .w{animation-duration:.01s!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#9b7024"/><stop offset=".5" stop-color="#fff1bf"/><stop offset="1" stop-color="#d9b25a"/></linearGradient></defs></svg>
+<div id="viewport">
+<div id="deck">
+
+<!-- 01 · Muito prazer -->
+<section class="slide" data-t="zoom" data-ch="A MRS" data-title="Muito prazer, #SomosMRS" data-fx="0.15">
+  <div class="bg"><img class="kb" src="assets/p01_0.webp" alt="Trem da MRS sobre ponte no mar"></div>
+  <div class="shade sh-tl"></div><div class="shade sh-r" style="opacity:.9"></div>
+  <div style="position:absolute;left:110px;top:110px">
+    <div class="big split" style="font-size:96px;font-weight:300;--d:.1s">Muito prazer,</div>
+    <div class="a l" style="--d:.7s;font-size:120px;font-weight:900;color:var(--mrs);line-height:1;text-shadow:0 10px 40px rgba(0,0,0,.4)">#SomosMRS</div>
+  </div>
+  <div style="position:absolute;right:120px;bottom:150px;width:640px">
+    <div class="kicker a r" style="--d:1s;color:#fff">Nosso propósito</div>
+    <span class="hairline a r" style="--d:1.05s;background:var(--mrs)"></span>
+    <div class="a r" style="--d:1.15s;font-size:52px;font-weight:800;line-height:1.1;color:var(--mrs)">Criar e operar soluções de logística integrada</div>
+    <p class="a r" style="--d:1.3s;margin-top:22px;font-size:30px;font-weight:300;line-height:1.35">cada vez mais competitivas e confiáveis, gerando resultados e bem-estar para a sociedade.</p>
+  </div>
+  <img class="a u" src="assets/p01_2.webp" alt="MRS" style="--d:1.5s;position:absolute;left:110px;bottom:110px;height:90px">
+</section>
+
+<!-- 02 · Números -->
+<section class="slide" data-t="cube" data-ch="A MRS" data-title="30 anos de história" data-fx="0" style="background:linear-gradient(120deg,#ffffff 0%,#eef2fb 60%,#dfe6f6 100%);color:var(--ink)">
+  <div style="position:absolute;left:100px;top:90px;width:900px">
+    <div class="a l" style="--d:.1s;display:flex;align-items:center;gap:20px">
+      <div class="ico" style="background:var(--ink);color:var(--mrs);border:none" data-i="clock"></div>
+      <div style="font-size:52px;font-weight:800"><span class="count" data-to="30">0</span> anos de história</div>
+    </div>
+    <div id="stats2" style="display:grid;grid-template-columns:1fr 1fr;gap:26px 40px;margin-top:46px"></div>
+  </div>
+  <div class="a dp" style="--d:.3s;position:absolute;right:0;top:0;bottom:0;width:640px;overflow:hidden;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)">
+    <img class="kb r" src="assets/p02_4.webp" alt="Trem MRS na mata" style="width:100%;height:100%;object-fit:cover">
+  </div>
+  <div style="position:absolute;left:1010px;top:110px;display:flex;flex-direction:column;gap:30px;align-items:center;width:240px">
+    <img class="a f floaty" src="assets/p02_11.webp" alt="Great Place To Work Certificada" style="--d:1.2s;width:150px;filter:drop-shadow(0 18px 30px rgba(0,0,0,.25))">
+    <img class="a f floaty" src="assets/p02_14.webp" alt="TIME Melhores Empregadores do Brasil 2026" style="--d:1.4s;width:170px;filter:drop-shadow(0 18px 30px rgba(0,0,0,.25));animation-delay:-2s">
+    <img class="a f floaty" src="assets/p02_13.webp" alt="Glassdoor Best Places to Work 2025" style="--d:1.6s;width:200px;border-radius:12px;filter:drop-shadow(0 18px 30px rgba(0,0,0,.25));animation-delay:-4s">
+  </div>
+  <img class="a u" src="assets/p01_2.webp" alt="MRS" style="--d:1.8s;position:absolute;right:50px;bottom:40px;height:60px">
+</section>
+
+<!-- 03 · Além do palco -->
+<section class="slide" data-t="flip" data-ch="Além do palco" data-title="Além do palco" data-fx="1">
+  <div class="bg"><img class="kb" src="assets/p33_126.webp" alt=""></div>
+  <div class="beams gold"><i></i><i></i></div>
+  <div class="oscar a bl" style="--d:.2s;right:230px"><div class="rays"></div><div class="halo"></div><div class="body"><img src="assets/oscar.webp" alt="Estatueta dourada"><div class="sheen"></div></div></div>
+  <div style="position:absolute;left:150px;top:120px;width:900px">
+    <img class="a z" src="assets/p03_21.webp" alt="MRS VIP — Valorização de Ideias e Pessoas" style="--d:.3s;width:330px;filter:drop-shadow(0 0 30px rgba(255,210,120,.35))">
+    <h1 class="gold" style="margin-top:80px;font-size:96px;font-weight:800;letter-spacing:.04em"><span class="mask"><span style="--d:.6s">ALÉM DO PALCO</span></span></h1>
+    <p class="split" style="--d:1.1s;margin-top:14px;font-size:40px;font-weight:300;line-height:1.3">como uma premiação se transformou em plataforma cultural</p>
+  </div>
+  <div class="a u" style="--d:1.8s;position:absolute;left:150px;bottom:100px;display:flex;align-items:center;gap:30px">
+    <img src="assets/p01_2.webp" alt="MRS" style="height:66px">
+    <div style="border-left:2px solid var(--gold);padding-left:26px;font-size:21px;line-height:1.5">
+      <b class="gold" style="font-size:24px">Prêmio Aberje 2026</b><br>Categoria: Evento<br>Regional: Minas Gerais / Centro-Oeste
+    </div>
+  </div>
+</section>
+
+<!-- 04 · Palco VIP -->
+<section class="slide" data-t="zoom" data-ch="Além do palco" data-title="O palco do MRS VIP" data-fx="0.6">
+  <div class="bg"><img class="kb" src="assets/p04_23.webp" alt="Palco do MRS VIP com logo iluminado"></div>
+  <div class="beams"><i></i><i></i></div>
+  <div class="shade sh-v"></div>
+</section>
+
+<!-- 05 -->
+<section class="slide" data-t="cube" data-ch="Além do palco" data-title="Por que o evento importa" data-fx="0.3">
+  <div class="bg"><img class="kb" src="assets/p05_24.webp" alt="Plateia celebrando no MRS VIP"></div>
+  <div class="shade sh-b"></div>
+  <p class="cap split" style="left:110px;bottom:110px;max-width:1500px;font-size:46px">O evento é importante porque reconhece comportamentos, conquistas e entregas concretas de atuação que evidenciam protagonismo e são norteadas pelos <span class="hl gold">PRINCÍPIOS</span> que orientam a cultura organizacional.</p>
+</section>
+
+<!-- 06 -->
+<section class="slide" data-t="car" data-ch="Além do palco" data-title="Conexão com a estratégia" data-fx="0.3">
+  <div class="bg"><img class="kb r" src="assets/p06_25.webp" alt="Colaboradores se cumprimentando"></div>
+  <div class="shade sh-l"></div>
+  <p class="cap split" style="left:110px;top:560px;max-width:620px;font-size:48px">Conecta-se à estratégia como meio de reconhecimento, conexão e valorização das <span class="hl gold">PESSOAS</span></p>
+</section>
+
+<!-- 07 -->
+<section class="slide" data-t="cubeV" data-ch="Além do palco" data-title="Alinhados aos direcionadores" data-fx="0.3">
+  <div class="bg"><img class="kb" src="assets/p07_26.webp" alt="Premiados comemorando com troféus"></div>
+  <div class="shade sh-t"></div>
+  <p class="cap split" style="left:110px;top:90px;max-width:1300px;font-size:48px;color:var(--gold2)">Projetos, atitudes e resultados alinhados aos direcionadores estratégicos da MRS.</p>
+</section>
+
+<!-- 08 -->
+<section class="slide" data-t="room" data-ch="Além do palco" data-title="O desafio" data-fx="0.3">
+  <div class="bg bw"><img class="kb r" src="assets/p08_27.webp" alt="Comemoração em preto e branco"></div>
+  <div class="shade sh-tr"></div>
+  <div class="cap" style="right:110px;top:110px;max-width:720px;text-align:right;font-size:50px">
+    <span class="split">O desafio era ampliar o impacto, transformando uma premiação anual já consolidada em uma experiência</span>
+    <div class="a z gold" style="--d:2.2s;font-size:92px;font-weight:900;letter-spacing:.02em;margin-top:10px">INESQUECÍVEL</div>
+  </div>
+</section>
+
+<!-- 09 · Como tudo começou -->
+<section class="slide" data-t="cube" data-ch="A experiência" data-title="Como tudo começou" data-fx="0.5">
+  <div class="bg"><img src="assets/kv_bg.webp" alt=""></div>
+  <div class="hbar a dn" style="--d:.1s"><h2>COMO TUDO COMEÇOU</h2><img class="vip" src="assets/p03_21.webp" alt="VIP"></div>
+  <div class="a l" style="--d:.3s;position:absolute;left:90px;top:160px;font-size:34px;font-weight:300;color:var(--gold2)">A escolha do tema</div>
+  <div style="position:absolute;left:90px;right:90px;top:230px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:34px">
+    <div class="card a f" style="--d:.5s;padding:34px">
+      <div style="display:flex;gap:18px;align-items:center"><div class="ico" data-i="calendar"></div><b style="font-size:22px;letter-spacing:.12em;color:var(--gold2)">MARÇO 2025</b></div>
+      <p style="margin-top:20px;font-size:22px;line-height:1.5">O Brasil conquistava sua primeira estatueta no Oscar, transformando a premiação em um dos assuntos mais comentados do País.</p>
+    </div>
+    <div class="card a f" style="--d:.75s;padding:34px">
+      <div style="display:flex;gap:18px;align-items:center"><div class="ico" data-i="globe"></div><b style="font-size:22px;letter-spacing:.12em;color:var(--gold2)">MAIS DO QUE UM TEMA</b></div>
+      <p style="margin-top:20px;font-size:22px;line-height:1.5">A repercussão nacional transformou o Oscar em uma oportunidade de conexão. A MRS aproveitou um assunto presente no imaginário coletivo para ampliar o alcance da sua estratégia de reconhecimento.</p>
+    </div>
+    <div class="card goldc a f" style="--d:1s;padding:34px">
+      <div style="display:flex;gap:18px;align-items:center"><div class="ico" data-i="bulb"></div><b style="font-size:22px;letter-spacing:.12em">O INSIGHT</b></div>
+      <p style="margin-top:20px;font-size:22px;line-height:1.5">A MRS utilizou o Oscar como metáfora para valorizar as pessoas que impulsionam resultados e ajudam a construir o futuro da companhia. Nascia o conceito:<br><b style="font-size:24px">LUZ, CÂMERA... RECONHECIMENTO!</b></p>
+    </div>
+  </div>
+  <div class="a fd" style="--d:1.2s;position:absolute;left:90px;top:678px;font-size:20px;letter-spacing:.2em;font-weight:600;color:var(--gold2)">DA RELEVÂNCIA CULTURAL AO PROTAGONISMO DAS PESSOAS</div>
+  <div class="film a fd" style="--d:1.3s;top:730px;right:620px;height:300px">
+    <div class="track">
+      <img src="assets/p09_29.webp" alt=""><img src="assets/p09_32.webp" alt=""><img src="assets/p09_35.webp" alt=""><img src="assets/p05_24.webp" alt=""><img src="assets/p07_26.webp" alt=""><img src="assets/p19_55.webp" alt="">
+      <img src="assets/p09_29.webp" alt=""><img src="assets/p09_32.webp" alt=""><img src="assets/p09_35.webp" alt=""><img src="assets/p05_24.webp" alt=""><img src="assets/p07_26.webp" alt=""><img src="assets/p19_55.webp" alt="">
+    </div>
+  </div>
+  <div class="a r" style="--d:1.5s;position:absolute;right:0;top:730px;width:640px;height:300px;background:linear-gradient(135deg,#e9c977,#b0832f);color:#1a1205;display:flex;align-items:center;padding-left:235px">
+    <img src="assets/oscar.webp" alt="" class="floaty" style="position:absolute;left:40px;bottom:0;height:340px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.4))">
+    <p style="font-size:32px;line-height:1.35;font-style:italic;font-weight:400">O Oscar foi o <b>tema.</b><br>A experiência foi a <b>estratégia.</b><br>A cultura foi o <b>resultado.</b></p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-t="zoom" data-ch="A experiência" data-title="As pessoas no centro" data-fx="0.4">
+  <div class="bg"><img class="kb" src="assets/p10_44.webp" alt="Salão do evento com telões"></div>
+  <div class="beams"><i></i><i></i></div>
+  <div class="shade sh-b"></div>
+  <p class="cap split" style="left:110px;bottom:100px;max-width:1200px">O conceito posicionou as pessoas no centro da narrativa, reforçando que cada conquista é resultado da dedicação e da colaboração das equipes</p>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-t="flip" data-ch="A experiência" data-title="Cada ponto de contato" data-fx="0.5">
+  <div class="bg"><img class="kb r" src="assets/p11_45.webp" alt="Cenografia com estrela vermelha e logo VIP"></div>
+  <div class="shade sh-r"></div>
+  <p class="cap split" style="right:110px;top:110px;max-width:560px;font-size:48px">Cada ponto de contato foi planejado para transformar reconhecimento em uma experiência imersiva e coerente.</p>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-t="cube" data-ch="A experiência" data-title="A apresentação" data-fx="0.2">
+  <div class="bg bw"><img class="kb" src="assets/p12_46.webp" alt="Apresentadora de costas no palco"></div>
+  <div class="shade sh-tr"></div>
+  <p class="cap" style="right:110px;top:120px;max-width:560px;text-align:right;font-size:54px"><span class="split">Por isso, a cerimônia foi apresentada por...</span></p>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-t="zoom" data-ch="A experiência" data-title="Júlia Horta" data-fx="0.7">
+  <div class="bg"><img class="kb" src="assets/p13_47.webp" alt="Júlia Horta apresentando a cerimônia"></div>
+  <div class="shade sh-l"></div>
+  <div style="position:absolute;left:110px;top:300px">
+    <div class="kicker a l" style="--d:.2s">Apresentação</div>
+    <h2 class="gold" style="font-size:110px;font-weight:900;line-height:1;margin-top:18px"><span class="mask"><span style="--d:.4s">JÚLIA</span></span><span class="mask"><span style="--d:.55s">HORTA</span></span></h2>
+    <p class="split" style="--d:1.1s;margin-top:30px;font-size:40px;font-weight:300;line-height:1.3;max-width:520px">juiz-forana, comunicadora e vencedora do Miss Brasil 2019</p>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-t="car" data-ch="A experiência" data-title="Palco, roteiro e trilha" data-fx="0.5">
+  <div class="bg"><img class="kb r" src="assets/p14_48.webp" alt="Palco com telão VIP e estatueta"></div>
+  <div class="beams gold"><i></i><i></i></div>
+  <div class="shade sh-b"></div>
+  <div style="position:absolute;left:110px;bottom:200px;display:flex;gap:22px">
+    <div class="ico a fx" style="--d:.4s" data-i="clapper"></div><div class="ico a fx" style="--d:.5s" data-i="music"></div><div class="ico a fx" style="--d:.6s" data-i="spot"></div><div class="ico a fx" style="--d:.7s" data-i="mic"></div>
+  </div>
+  <p class="cap split" style="--d:.6s;left:110px;bottom:90px;max-width:1650px;font-size:38px"><b>Palco, roteiro, trilha sonora e iluminação:</b> reforçavam a narrativa inspirada nas grandes premiações, agregando familiaridade ao conceito e fortalecendo a conexão com o público</p>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-t="cube" data-ch="A experiência" data-title="Ativações cinematográficas" data-fx="0.3">
+  <div class="a l" style="--d:0s;position:absolute;left:0;top:0;bottom:0;width:1290px;overflow:hidden"><img class="kb" src="assets/p15_49.webp" alt="Recepcionistas em figurino de cinema" style="width:100%;height:100%;object-fit:cover"></div>
+  <div class="a r" style="--d:.2s;position:absolute;right:0;top:0;bottom:0;width:620px;overflow:hidden"><img class="kb r" src="assets/p15_50.webp" alt="Ativação com bombonière" style="width:100%;height:100%;object-fit:cover"></div>
+  <div class="shade sh-bl"></div>
+  <p class="cap split" style="left:90px;bottom:90px;max-width:620px;font-size:42px">O universo cinematográfico ganhava mais vida com ativações que aproximavam o público, de forma leve e descontraída</p>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-t="flip" data-ch="A experiência" data-title="Sensações e emoções" data-fx="0.4">
+  <div class="a dn" style="--d:0s;position:absolute;left:0;top:0;bottom:0;width:1240px;overflow:hidden"><img class="kb r" src="assets/p16_51.webp" alt="Pipocas personalizadas VIP" style="width:100%;height:100%;object-fit:cover"></div>
+  <div class="a u" style="--d:.2s;position:absolute;right:0;top:0;bottom:0;width:670px;overflow:hidden"><img class="kb" src="assets/p16_52.webp" alt="Carrinho de pipoca" style="width:100%;height:100%;object-fit:cover"></div>
+  <div class="shade" style="background:linear-gradient(270deg,rgba(3,8,24,.9),rgba(3,8,24,0) 40%)"></div>
+  <div class="ico a z" style="--d:.8s;position:absolute;right:110px;bottom:330px" data-i="heart"></div>
+  <p class="cap split" style="right:110px;bottom:110px;max-width:540px;text-align:right;font-size:42px">Sensações e emoções geravam pertencimento e conexão emocional</p>
+</section>
+
+<!-- 17 -->
+<section class="slide" data-t="zoom" data-ch="A experiência" data-title="O tapete vermelho" data-fx="0.6">
+  <div class="bg"><img class="kb" src="assets/p17_53.webp" alt="Tapete vermelho com lustre e estrelas"></div>
+  <div class="shade sh-bl"></div>
+  <p class="cap split" style="left:110px;bottom:110px;max-width:640px;font-size:48px">O <span class="hl" style="color:#ff5a5a">tapete vermelho</span> simbolizava a chegada ao momento de protagonismo vivido pelos participantes</p>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-t="room" data-ch="A experiência" data-title="Calçada da fama" data-fx="0.5">
+  <div class="bg"><img class="kb r" src="assets/p18_54.webp" alt="Caminho de estrelas no salão"></div>
+  <div class="shade sh-b"></div><div class="shade" style="background:linear-gradient(270deg,rgba(3,8,24,.8),transparent 50%)"></div>
+  <p class="cap split" style="right:110px;top:470px;max-width:820px;font-size:40px">Inspirada na calçada da fama, os participantes percorriam um caminho formado por estrelas, com os <b class="gold">princípios estratégicos</b> da companhia, conectando reconhecimento, cultura e propósito em um mesmo percurso</p>
+  <div class="starwalk" id="starwalk"></div>
+</section>
+
+<!-- 19 -->
+<section class="slide" data-t="cube" data-ch="A experiência" data-title="Reação em tempo real" data-fx="0.4">
+  <div class="bg"><img class="kb" src="assets/p19_55.webp" alt="Plateia filmada e exibida no telão"></div>
+  <div class="shade sh-bl"></div>
+  <div class="ico a z" style="--d:.4s;position:absolute;left:110px;top:420px" data-i="video"></div>
+  <p class="cap split" style="left:110px;bottom:90px;max-width:780px;font-size:38px">A exibição da reação do público em tempo real transformou espectadores em protagonistas da narrativa, criando momentos espontâneos de interação e identificação, assim como nas grandes premiações</p>
+</section>
+
+<!-- 20 -->
+<section class="slide" data-t="car" data-ch="A experiência" data-title="Espaços instagramáveis" data-fx="0.5">
+  <div class="a l" style="position:absolute;left:0;top:0;bottom:0;width:1060px;overflow:hidden"><img class="kb" src="assets/p20_56.webp" alt="Estrela iluminada cenográfica" style="width:100%;height:100%;object-fit:cover"></div>
+  <div class="a r" style="--d:.15s;position:absolute;right:0;top:0;bottom:0;width:850px;overflow:hidden"><img class="kb r" src="assets/p20_57.webp" alt="Participante fotografando com celular" style="width:100%;height:100%;object-fit:cover"></div>
+  <div class="shade sh-tl"></div>
+  <div class="ico a z" style="--d:.5s;position:absolute;left:110px;top:90px" data-i="camera"></div>
+  <p class="cap split" style="left:110px;top:190px;max-width:560px;font-size:44px">Além dos espaços instagramáveis que registravam todo o orgulho de fazer parte</p>
+</section>
+
+<!-- 21 -->
+<section class="slide" data-t="zoom" data-ch="A experiência" data-title="Uma experiência memorável" data-fx="0.8">
+  <div class="bg"><img class="kb" src="assets/p21_58.webp" alt="Palco com estatueta e logo VIP"></div>
+  <div class="beams gold"><i></i><i></i></div>
+  <div class="shade sh-b"></div>
+  <p class="cap split" style="left:110px;bottom:110px;max-width:900px;font-size:54px">Uma experiência memorável, capaz de traduzir</p>
+</section>
+
+<!-- 22 · mosaico -->
+<section class="slide" data-t="cubeV" data-ch="A experiência" data-title="Simples e emocional" data-fx="0.3">
+  <div style="position:absolute;inset:0;display:grid;grid-template-columns:600px 1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;background:#000">
+    <div class="a f" style="--d:0s;grid-row:span 2;overflow:hidden"><img class="kb" src="assets/p22_59.webp" alt="Mesas do evento" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="a fx" style="--d:.15s;overflow:hidden"><img class="kb r" src="assets/p22_61.webp" alt="Show no palco" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="a fx" style="--d:.3s;overflow:hidden"><img class="kb" src="assets/p22_62.webp" alt="Telão" style="width:100%;height:100%;object-fit:cover"></div>
+    <div class="a f" style="--d:.45s;grid-column:span 2;overflow:hidden"><img class="kb r" src="assets/p22_60.webp" alt="Buffet" style="width:100%;height:100%;object-fit:cover"></div>
+  </div>
+  <div class="shade sh-bl"></div>
+  <p class="cap split" style="--d:.8s;left:110px;bottom:100px;max-width:700px;font-size:56px">de forma simples e emocional</p>
+</section>
+
+<!-- 23 -->
+<section class="slide" data-t="flip" data-ch="A experiência" data-title="A essência do evento" data-fx="0.9">
+  <div class="bg"><img class="kb" src="assets/p23_63.webp" alt="Premiados celebrando"></div>
+  <div class="shade sh-bl"></div>
+  <p class="cap" style="left:110px;bottom:100px;font-size:56px"><span class="split">a</span> <span class="hl gold a z" style="--d:.6s;display:inline-block;font-size:96px">ESSÊNCIA</span> <span class="split" style="--d:1s">do evento:</span></p>
+</section>
+
+<!-- 24 -->
+<section class="slide" data-t="cube" data-ch="A experiência" data-title="Quem protagoniza" data-fx="0.4">
+  <div class="bg"><img class="kb r" src="assets/p24_64.webp" alt="Equipe premiada posando"></div>
+  <div class="shade sh-b"></div>
+  <p class="cap split" style="left:110px;bottom:100px;max-width:1500px;font-size:56px">reconhecer quem <b class="gold">protagoniza</b> as transformações</p>
+</section>
+
+<!-- 25 -->
+<section class="slide" data-t="car" data-ch="A experiência" data-title="Liderança" data-fx="0.5">
+  <div class="a l" style="position:absolute;left:0;top:0;bottom:0;width:1000px;overflow:hidden"><img class="kb" src="assets/p25_65.webp" alt="Ane Menezes entregando premiação" style="width:100%;height:100%;object-fit:cover"></div>
+  <div class="a r" style="--d:.15s;position:absolute;right:0;top:0;bottom:0;width:910px;overflow:hidden"><img class="kb r" src="assets/p25_66.webp" alt="Guilherme Mello discursando" style="width:100%;height:100%;object-fit:cover"></div>
+  <div class="shade sh-tr"></div><div class="shade sh-b" style="opacity:.8"></div>
+  <p class="cap split" style="right:110px;top:90px;max-width:800px;text-align:right;font-size:50px">e contribui para os resultados da MRS</p>
+  <div class="a u" style="--d:1.4s;position:absolute;left:90px;bottom:80px;font-size:28px;line-height:1.3"><b class="gold" style="font-size:34px">Ane Menezes</b><br><i style="font-weight:300">Diretora de Pessoas</i></div>
+  <div class="a u" style="--d:1.6s;position:absolute;left:1100px;bottom:80px;font-size:28px;line-height:1.3"><b class="gold" style="font-size:34px">Guilherme Mello</b><br><i style="font-weight:300">Presidente</i></div>
+</section>
+
+<!-- 26 -->
+<section class="slide" data-t="zoom" data-ch="A experiência" data-title="As nossas pessoas" data-fx="0.6">
+  <div class="bg"><img class="kb" src="assets/p26_67.webp" alt="Colaboradores dançando juntos"></div>
+  <div class="shade sh-t"></div>
+  <h2 class="gold" style="position:absolute;left:110px;top:80px;font-size:72px;font-weight:800;letter-spacing:.06em"><span class="mask"><span style="--d:.3s">AS NOSSAS PESSOAS</span></span></h2>
+</section>
+
+<!-- 27 · Comunicação de impacto -->
+<section class="slide" data-t="flip" data-ch="Comunicação de impacto" data-title="Comunicação de impacto" data-fx="1">
+  <div class="bg"><img class="kb" src="assets/p33_126.webp" alt=""></div>
+  <div class="beams gold"><i></i><i></i></div>
+  <div class="oscar a bl" style="--d:.2s;right:250px"><div class="rays"></div><div class="halo"></div><div class="body"><img src="assets/oscar.webp" alt=""><div class="sheen"></div></div></div>
+  <img class="a z" src="assets/p03_21.webp" alt="VIP" style="--d:.3s;position:absolute;left:160px;top:140px;width:300px">
+  <div style="position:absolute;left:160px;top:520px">
+    <div class="kicker a l" style="--d:.6s">Capítulo</div>
+    <h2 class="gold" style="font-size:96px;font-weight:800;line-height:1.05;margin-top:20px"><span class="mask"><span style="--d:.8s">COMUNICAÇÃO</span></span><span class="mask"><span style="--d:.95s">DE IMPACTO</span></span></h2>
+  </div>
+</section>
+
+<!-- 28 · Timeline -->
+<section class="slide" data-t="cube" data-ch="Comunicação de impacto" data-title="Uma experiência construída" data-fx="0.4">
+  <div class="bg"><img src="assets/kv_bg.webp" alt=""></div>
+  <div class="hbar a dn" style="--d:.1s"><h2>UMA EXPERIÊNCIA CONSTRUÍDA</h2><img class="vip" src="assets/p03_21.webp" alt="VIP"></div>
+  <p class="a l" style="--d:.3s;position:absolute;left:90px;top:180px;width:860px;font-size:28px;line-height:1.5;font-weight:300">O MRS VIP não foi uma ação de um dia. A experiência foi construída ao longo de três meses, <b style="color:var(--gold2);font-weight:700">integrando comunicação, logística, hospitalidade e produção.</b></p>
+  <div class="card a r" style="--d:.5s;position:absolute;right:90px;top:170px;width:780px;padding:30px 36px">
+    <div style="display:flex;gap:16px;align-items:center"><div class="ico" data-i="target" style="width:52px;height:52px"></div><b style="letter-spacing:.14em;color:var(--gold2);font-size:20px">POR QUE FOI IMPORTANTE?</b></div>
+    <p style="margin-top:14px;font-size:20px;line-height:1.5">A jornada permitiu criar expectativa antes do evento, garantir uma experiência consistente durante a cerimônia e prolongar o reconhecimento após a premiação, ampliando o alcance e o impacto da iniciativa.</p>
+  </div>
+  <div class="a l" style="--d:.7s;position:absolute;left:90px;top:540px;font-size:18px;letter-spacing:.2em;color:var(--gold2);font-weight:700">JAN – ABRIL<br><span style="font-size:34px;color:#fff;letter-spacing:.05em">2025</span></div>
+  <div class="tl-line" style="left:150px;right:90px;top:619px"></div>
+  <div id="tl"></div>
+</section>
+
+<!-- 29 · Do conceito à estratégia -->
+<section class="slide" data-t="room" data-ch="Comunicação de impacto" data-title="Do conceito à estratégia" data-fx="0.4">
+  <div class="bg"><img src="assets/kv_bg.webp" alt=""></div>
+  <div class="hbar a dn" style="--d:.1s"><h2>DO CONCEITO À ESTRATÉGIA</h2><img class="vip" src="assets/p03_21.webp" alt="VIP"></div>
+  <p class="a l" style="--d:.3s;position:absolute;left:90px;top:190px;width:720px;font-size:25px;line-height:1.55;font-weight:300">Para preparar os participantes, organizar deslocamentos e construir expectativa em torno do MRS VIP, a Comunicação elaborou uma <b style="color:var(--gold2);font-weight:700">jornada de comunicação segmentada</b>, direcionada exclusivamente ao público do evento. A estratégia integrou comunicação e logística para garantir uma experiência consistente desde o primeiro contato.</p>
+  <div class="card a u" style="--d:.6s;position:absolute;left:90px;top:640px;width:720px;padding:30px 36px">
+    <div style="display:flex;gap:16px;align-items:center"><div class="ico" data-i="target" style="width:52px;height:52px"></div><b style="letter-spacing:.14em;color:var(--gold2);font-size:20px">POR QUE FOI IMPORTANTE?</b></div>
+    <p style="margin-top:14px;font-size:20px;line-height:1.5">A comunicação não foi apenas informativa. Ela preparou o participante para a experiência e reduziu ruídos em uma operação que envolveu deslocamentos, hospedagem e recepção de colaboradores de diferentes estados.</p>
+  </div>
+  <div class="a dp" style="--d:.5s;position:absolute;left:930px;top:180px;width:520px;height:460px;perspective:1000px">
+    <img src="assets/p29_73.webp" alt="Mapa do Brasil com MG, RJ e SP em destaque" class="floaty" style="width:420px;transform:rotateX(18deg) rotateZ(-4deg);filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))">
+    <div class="plane"><svg class="i" viewBox="0 0 24 24" style="width:100%;height:100%;fill:currentColor;stroke:none;transform:rotate(45deg)"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div>
+    <div class="gold" style="position:absolute;left:250px;top:20px;white-space:nowrap;font-size:32px;font-weight:800;letter-spacing:.12em">MG • RJ • SP</div>
+  </div>
+  <div style="position:absolute;left:1480px;top:200px;display:flex;flex-direction:column;gap:34px">
+    <div class="a r" style="--d:.8s;display:flex;align-items:center;gap:20px"><img src="assets/p29_77.webp" alt="" style="width:86px"><div><div class="num gold" style="font-size:72px"><span class="count" data-to="8">0</span></div><div class="lbl" style="font-size:20px">rotas rodoviárias</div></div></div>
+    <div class="a r" style="--d:1s;display:flex;align-items:center;gap:20px"><img src="assets/p29_75.webp" alt="" style="width:86px"><div><div class="num gold" style="font-size:72px"><span class="count" data-to="4">0</span></div><div class="lbl" style="font-size:20px">rotas aéreas</div></div></div>
+  </div>
+  <div style="position:absolute;left:930px;top:700px;display:flex;gap:60px">
+    <div class="card a f" style="--d:1.2s;padding:30px 40px;display:flex;align-items:center;gap:24px"><div class="ico" data-i="bed"></div><div><div class="num gold" style="font-size:80px">+<span class="count" data-to="250">0</span></div><div class="lbl" style="font-size:20px">colaboradores hospedados</div></div></div>
+    <div class="card a f" style="--d:1.4s;padding:30px 40px;display:flex;align-items:center;gap:24px"><div class="ico" data-i="users"></div><div><div class="num gold" style="font-size:80px">+<span class="count" data-to="410">0</span></div><div class="lbl" style="font-size:20px">pax total</div></div></div>
+  </div>
+</section>
+
+<!-- 30 · Comunicação integrada -->
+<section class="slide" data-t="cube" data-ch="Comunicação de impacto" data-title="Comunicação integrada" data-fx="0.4">
+  <div class="bg"><img src="assets/kv_bg.webp" alt=""></div>
+  <div class="hbar a dn" style="--d:.1s"><h2>COMUNICAÇÃO INTEGRADA</h2><img class="vip" src="assets/p03_21.webp" alt="VIP"></div>
+  <p class="a l" style="--d:.3s;position:absolute;left:90px;top:180px;width:820px;font-size:23px;line-height:1.55;font-weight:300">Por meio de uma <b style="color:var(--gold2);font-weight:700">jornada integrada de comunicação</b>, conteúdos internos e externos conectaram diferentes públicos à experiência do MRS VIP, prolongando a visibilidade dos premiados e dos projetos reconhecidos. A cobertura em tempo real, os conteúdos de pós-evento, os registros audiovisuais e os desdobramentos nos canais corporativos transformaram o evento em uma <b style="color:var(--gold2);font-weight:700">plataforma contínua de valorização das pessoas</b>, fortalecendo a <b style="color:var(--gold2);font-weight:700">cultura organizacional</b> internamente e reforçando a <b style="color:var(--gold2);font-weight:700">marca empregadora</b> da MRS junto a públicos externos.</p>
+  <div class="card a u" style="--d:.6s;position:absolute;left:90px;top:705px;width:820px;padding:30px 36px">
+    <div style="display:flex;gap:16px;align-items:center"><div class="ico" data-i="share" style="width:52px;height:52px"></div><b style="letter-spacing:.14em;color:var(--gold2);font-size:20px">POR QUE FOI ESTRATÉGICO?</b></div>
+    <p style="margin-top:14px;font-size:20px;line-height:1.5">Ao ampliar a experiência para além da cerimônia, a comunicação transformou o MRS VIP em uma plataforma de cultura capaz de dar visibilidade às pessoas, reforçar comportamentos alinhados à estratégia e fortalecer a reputação da companhia.</p>
+  </div>
+  <div class="a dp" style="--d:.5s;position:absolute;left:1020px;top:175px;width:800px;height:800px">
+    <div class="orbit" style="inset:20px"><div class="rot">
+      <div class="chan" style="left:50%;top:0"><div class="cr"><div class="bub"><img src="assets/p30_93.webp" alt=""></div><span>YouTube</span></div></div>
+      <div class="chan" style="left:7%;top:75%"><div class="cr"><div class="bub"><img src="assets/p30_97.webp" alt=""></div><span>Instagram</span></div></div>
+      <div class="chan" style="left:93%;top:75%"><div class="cr"><div class="bub"><img src="assets/p30_95.webp" alt=""></div><span>LinkedIn</span></div></div>
+    </div></div>
+    <div class="orbit inner" style="inset:190px"><div class="rot">
+      <div class="chan" style="left:50%;top:100%"><div class="cr"><div class="bub"><img src="assets/p30_89.webp" alt=""></div><span>Intranet<br>(SharePoint)</span></div></div>
+      <div class="chan" style="left:7%;top:25%"><div class="cr"><div class="bub"><img src="assets/p30_87.webp" alt=""></div><span>MRS para você<br>(Teams)</span></div></div>
+      <div class="chan" style="left:93%;top:25%"><div class="cr"><div class="bub"><img src="assets/p30_91.webp" alt=""></div><span>Newsletter<br>(E-mail)</span></div></div>
+    </div></div>
+    <div style="position:absolute;left:50%;top:50%;width:200px;height:200px;margin:-100px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff1bf,#c89a3c);display:grid;place-items:center;color:#1a1205;box-shadow:0 0 80px rgba(255,210,120,.55)" class="floaty"><svg class="i" viewBox="0 0 24 24" style="width:96px;height:96px" data-i-inline="users"></svg></div>
+    
+  </div>
+  <div class="a u" style="--d:1.4s;position:absolute;left:1180px;top:1000px;display:flex;gap:40px;font-size:16px;letter-spacing:.2em;font-weight:700">
+    <span style="display:flex;align-items:center;gap:10px"><i style="width:34px;border-top:2px dashed var(--gold)"></i><span style="color:var(--gold2)">CANAIS EXTERNOS</span></span>
+    <span style="display:flex;align-items:center;gap:10px"><i style="width:34px;border-top:2px dashed #fff;opacity:.7"></i>CANAIS INTERNOS</span>
+  </div>
+</section>
+
+<!-- 31 · Resultados -->
+<section class="slide" data-t="flip" data-ch="Comunicação de impacto" data-title="Resultados e reputação" data-fx="0.5">
+  <div class="bg"><img src="assets/kv_bg.webp" alt=""></div>
+  <div class="corner tr"></div>
+  <img class="a dn" src="assets/p31_119.webp" alt="MRS VIP — 9 de abril, Juiz de Fora - MG" style="--d:.1s;position:absolute;left:70px;top:60px;width:760px;border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.5)">
+  <!-- left column -->
+  <div class="card quote a l" style="--d:.4s;position:absolute;left:70px;top:280px;width:760px">O evento é incrível, decoração mais bonita de todas as edições. A integração é excelente e poder comemorar as conquistas é um momento único, além de aprender com os projetos.</div>
+  <div class="gauge a z" style="--d:.7s;position:absolute;left:70px;top:620px;width:330px;height:330px">
+    <svg viewBox="0 0 120 120" width="330" height="330"><circle class="trk" cx="60" cy="60" r="52"/><circle class="val" cx="60" cy="60" r="52" style="--c:326.7;--p:.89"/></svg>
+    <div class="in"><div class="num gold" style="font-size:84px"><span class="count" data-to="89">0</span>%</div><div class="lbl" style="font-size:18px">abertura<br>Comunicação interna</div></div>
+  </div>
+  <div class="gauge a z" style="--d:.9s;position:absolute;left:470px;top:620px;width:330px;height:330px">
+    <svg viewBox="0 0 120 120" width="330" height="330"><circle class="trk" cx="60" cy="60" r="52"/><circle class="val" cx="60" cy="60" r="52" style="--c:326.7;--p:.92"/></svg>
+    <div class="in"><div class="num gold" style="font-size:100px"><span class="count" data-to="92">0</span></div><div class="lbl" style="font-size:22px;letter-spacing:.3em">NPS</div></div>
+  </div>
+  <!-- middle -->
+  <div class="card quote a u" style="--d:.6s;position:absolute;left:880px;top:280px;width:470px;font-size:19px">Gostei de tudo, desde o momento que recebi o convite, o transporte até o local, a hospedagem que foi muito boa, e evento com a temática do Oscar foi muito legal, os detalhes, todos seguindo o tema, pipoca, bala, o cenário, a apresentação da Julia Horta foi perfeita, mas principalmente ver a alegria dos participantes que fizeram grandes projetos.</div>
+  <!-- right -->
+  <div class="a r" style="--d:.5s;position:absolute;left:1410px;top:110px;width:440px">
+    <div style="display:flex;align-items:center;gap:18px"><div class="num gold" style="font-size:110px"><span class="count" data-to="51">0</span>%</div><img src="assets/p31_123.webp" alt="LinkedIn" style="width:64px;border-radius:10px"></div>
+    <div class="lbl" style="font-size:22px;letter-spacing:.2em;text-transform:uppercase">engajamento</div>
+    <p style="margin-top:20px;font-size:22px;line-height:1.5;font-weight:300">O MRS VIP também se tornou um <b style="color:var(--gold2)">ativo de reputação</b>. Os resultados externos demonstram o potencial do reconhecimento como <b style="color:var(--gold2)">narrativa de marca empregadora</b>.</p>
+  </div>
+  <div id="phones" style="position:absolute;left:1290px;top:560px;width:540px;height:480px;perspective:1400px"></div>
+</section>
+
+<!-- 32 · Ultrapassou a cerimônia -->
+<section class="slide" data-t="cube" data-ch="Comunicação de impacto" data-title="Além da cerimônia" data-fx="0.7">
+  <div class="bg"><img class="kb" src="assets/kv_bg.webp" alt=""></div>
+  <div class="corner bl"></div><div class="corner tr"></div>
+  <div style="position:absolute;left:150px;top:120px;display:flex;gap:110px">
+    <div class="a fx" style="--d:.2s"><div class="num gold" style="font-size:120px">+<span class="count" data-to="410">0</span></div><div class="kicker" style="font-size:20px;color:#fff">PAX TOTAL</div></div>
+    <div class="a fx" style="--d:.4s"><div class="num gold" style="font-size:120px">+<span class="count" data-to="60">0</span></div><div class="kicker" style="font-size:20px;color:#fff">PESSOAS PREMIADAS</div></div>
+    <div class="a fx" style="--d:.6s"><div class="num gold" style="font-size:120px"><span class="count" data-to="30">0</span></div><div class="kicker" style="font-size:20px;color:#fff">RECONHECIMENTOS</div></div>
+  </div>
+  <div style="position:absolute;left:150px;top:470px;width:880px">
+    <h2 style="font-size:42px;font-weight:300;line-height:1.2"><span class="mask"><span style="--d:.9s">O RECONHECIMENTO ULTRAPASSOU OS</span></span><span class="mask"><span style="--d:1s"><b class="gold" style="font-weight:800">LIMITES DA CERIMÔNIA</b></span></span></h2>
+    <p class="a u" style="--d:1.3s;margin-top:30px;font-size:24px;line-height:1.55;font-weight:300">Alguns projetos avançaram para o maior encontro nacional voltado à excelência em qualidade e gestão, promovido pela <b style="color:var(--gold2)">UBQ</b> (União Brasileira para a Qualidade). Mais do que celebrar resultados internos, o evento atuou como vitrine para iniciativas capazes de gerar valor para o negócio, conquistar reconhecimento externo e representar a MRS em ambientes de referência nacional.</p>
+  </div>
+  <div class="a dp" style="--d:.9s;position:absolute;left:1110px;top:430px;width:700px;perspective:1400px">
+    <div class="tilt" id="ubq" style="border-radius:20px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.6);border:2px solid rgba(217,178,90,.5)"><img src="assets/p32_125.webp" alt="Equipe MRS no encontro da UBQ" style="width:100%;display:block"></div>
+    <div class="card goldc" style="position:absolute;right:-30px;bottom:-60px;padding:22px 30px;display:flex;gap:18px;align-items:center">
+      <div class="ico" data-i="trophy"></div><div><b style="font-size:30px">1º e 3º lugar</b><div style="font-size:17px;margin-top:4px">Métodos Ágeis e<br>Círculo de Controle da Qualidade</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 33 · Encerramento -->
+<section class="slide" data-t="zoom" data-ch="Encerramento" data-title="MRS VIP" data-fx="1">
+  <div class="bg"><img class="kb" src="assets/p33_126.webp" alt=""></div>
+  <div class="beams gold"><i></i><i></i></div>
+  <div class="oscar a bl" style="--d:.1s;left:50%;margin-left:-260px;opacity:.35"><div class="rays"></div><div class="halo"></div></div>
+  
+  <img class="a z" src="assets/p03_21.webp" alt="MRS VIP — Valorização de Ideias e Pessoas" style="--d:.4s;position:absolute;left:50%;top:50%;width:520px;margin:-275px 0 0 -260px;filter:drop-shadow(0 0 50px rgba(255,210,120,.45))">
+  <img class="a u" src="assets/p01_2.webp" alt="MRS" style="--d:1.2s;position:absolute;left:50%;bottom:90px;height:56px;transform:translateX(-50%)">
+</section>
+
+<canvas id="fx" width="1920" height="1080"></canvas>
+<div id="flare"></div>
+<div id="grain"></div>
+</div>
+</div>
+
+<div id="hint">← → navegar · F tela cheia · M índice · P apresentação automática</div>
+<div id="ui">
+  <button id="prev" aria-label="Anterior"><svg class="i" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+  <button id="next" aria-label="Próximo"><svg class="i" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+  <div id="chapter"></div>
+  <div id="bar"><i></i></div>
+  <div id="count">01 / 33</div>
+  <button id="play" aria-label="Apresentação automática"><svg class="i" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></button>
+  <button id="menuBtn" aria-label="Índice"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <button id="fs" aria-label="Tela cheia"><svg class="i" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button>
+</div>
+<nav id="menu"></nav>
+
+<script>
+(() => {
+/* ---------- icons ---------- */
+const I = {
+  clock:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+  users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  pin:'<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+  doc:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/>',
+  train:'<rect x="4" y="3" width="16" height="16" rx="2"/><path d="M4 11h16M12 3v8M8 19l-2 3M18 22l-2-3"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/>',
+  trend:'<path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/>',
+  globe:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+  calendar:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  bulb:'<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6M10 22h4"/>',
+  clapper:'<path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9M12.4 3.4l3.1 4M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
+  music:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+  spot:'<path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2z"/><path d="M19 3v4M21 5h-4"/>',
+  mic:'<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/>',
+  heart:'<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
+  video:'<path d="m22 8-6 4 6 4V8Z"/><rect x="2" y="6" width="14" height="12" rx="2"/>',
+  camera:'<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>',
+  target:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  send:'<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>',
+  layers:'<path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/>',
+  trophy:'<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
+  mega:'<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
+  chart:'<path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/>',
+  share:'<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>',
+  bed:'<path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/>',
+  star:'<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>'
+};
+const svg = (k, extra='') => `<svg class="i" viewBox="0 0 24 24" ${extra}>${I[k]}</svg>`;
+
+/* ---------- generated content ---------- */
+const stats = [
+  ['users','+ <span class="count" data-to="13">0</span> mil','colaboradores (as)'],
+  ['pin','<span class="count" data-to="107">0</span> municípios','interligados nos estados MG, RJ e SP'],
+  ['doc','<span class="count" data-to="2056" data-start="2000">2000</span>','concessão renovada até'],
+  ['train','<span class="count" data-to="213">0</span> Mt','milhões de toneladas de carga transportadas em 2025'],
+  ['trend','R$ <span class="count" data-to="3.4" data-dec="1">0</span> bilhões','de investimentos em 2025'],
+  ['globe','<span class="count" data-to="20">0</span>% das exportações','brasileiras passam pela MRS']
+];
+document.getElementById('stats2').innerHTML = stats.map((s,i)=>`
+  <div class="a fx" style="--d:${.35+i*.12}s;display:flex;gap:18px;align-items:flex-start">
+    <div class="ico" style="background:#fff;border:1px solid #d6dcec;color:var(--ink);box-shadow:0 10px 24px rgba(11,27,70,.1)">${svg(s[0])}</div>
+    <div><div class="num" style="font-size:44px;color:var(--ink)">${s[1]}</div><div class="lbl" style="font-size:19px;margin-top:6px;color:#3a4a74">${s[2]}</div></div>
+  </div>`).join('');
+
+const tl = [
+  ['JAN','20','PLANEJAMENTO ESTRATÉGICO','Início do planejamento do evento, definição do conceito, especificações técnicas, produção e estruturação da experiência.','target'],
+  ['FEV','13','SAVE THE DATE','Início da jornada de comunicação e primeiro contato com os participantes.','send'],
+  ['MAR','01','MOBILIZAÇÃO','Produção, logística, régua de comunicação, matriz RACI e preparação da experiência.','layers'],
+  ['ABR','09','MRS VIP 2025','Realização do evento, cobertura em tempo real e registros audiovisuais.','trophy'],
+  ['ABR','10','AMPLIFICAÇÃO','Divulgação interna e externa dos conteúdos e principais momentos da experiência.','mega'],
+  ['ABR','22','CONSOLIDAÇÃO','Relatório de resultados e encerramento formal do ciclo do projeto.','chart']
+];
+document.getElementById('tl').innerHTML = tl.map((t,i)=>{
+  const x = 330 + i*268;
+  return `<div class="node a fx ${i===3?'hot':''}" style="--d:${1.1+i*.25}s;left:${x}px;top:470px">
+    <div class="ni">${svg(t[4])}</div>
+    <div class="dot"><small>${t[0]}</small><b>${t[1]}</b></div>
+    <h4>${t[2]}</h4><p>${t[3]}</p></div>`;}).join('');
+
+const sw = document.getElementById('starwalk');
+for (let i=0;i<9;i++){ const s=document.createElement('span'); s.innerHTML=svg('star','style="width:100%;height:100%;fill:currentColor"'); s.style.left=(140+i*190)+'px'; s.style.animationDelay=(1.2+i*.15)+'s'; sw.appendChild(s);}
+
+const ph = ['p31_116','p31_104','p31_100','p31_107','p31_110','p31_113','p31_122'];
+document.getElementById('phones').innerHTML = ph.map((p,i)=>{
+  const n=ph.length, c=(i-(n-1)/2);
+  return `<div class="phone a f" style="--d:${1+i*.12}s;left:${170+c*46}px;top:${Math.abs(c)*14}px;transform-origin:50% 120%;z-index:${10-Math.abs(c)|0}"><img src="assets/${p}.webp" alt=""></div>`;}).join('');
+document.querySelectorAll('#phones .phone').forEach((el,i)=>{const c=i-(ph.length-1)/2; el.style.rotate=(c*7)+'deg';});
+
+document.querySelectorAll('[data-i]').forEach(el=>el.innerHTML=svg(el.dataset.i));
+document.querySelectorAll('[data-i-inline]').forEach(el=>el.innerHTML=I[el.dataset.iInline]);
+
+/* word split */
+document.querySelectorAll('.split').forEach(el=>{
+  const base = parseFloat(getComputedStyle(el).getPropertyValue('--d')) || 0;
+  let k = 0;
+  const walk = node => {
+    [...node.childNodes].forEach(n=>{
+      if (n.nodeType===3){
+        const frag=document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(part=>{
+          if(!part) return;
+          if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(' '));return;}
+          const s=document.createElement('span'); s.className='w'; s.textContent=part;
+          s.style.animationDelay=(base+.6+k++*.045)+'s'; frag.appendChild(s);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType===1 && !n.classList.contains('a')) {
+        if (n.classList.contains('gold')||n.classList.contains('hl')||n.tagName==='B'){ n.classList.add('w'); n.style.animationDelay=(base+.6+k++*.045)+'s'; }
+        else walk(n);
+      }
+    });
+  };
+  walk(el);
+});
+
+/* ---------- deck engine ---------- */
+const deck=document.getElementById('deck'), slides=[...deck.querySelectorAll('.slide')], N=slides.length;
+let cur=0, busy=false, fxTarget=0.3;
+const ORI = {
+  cube:{L:['100% 50%','0% 50%'],R:['0% 50%','100% 50%']},
+  cubeV:{L:['50% 100%','50% 0%'],R:['50% 0%','50% 100%']},
+  car:{L:['100% 50%','0% 50%'],R:['0% 50%','100% 50%']},
+  room:{L:['100% 50%','0% 50%'],R:['0% 50%','100% 50%']},
+  flip:{L:['50% 50%','50% 50%'],R:['50% 50%','50% 50%']},
+  zoom:{L:['50% 50%','50% 50%'],R:['50% 50%','50% 50%']}
+};
+const DUR = {cube:1100,cubeV:1100,car:1000,room:1000,flip:1100,zoom:950};
+
+function fit(){
+  const s=Math.min(innerWidth/1920, innerHeight/1080);
+  deck.style.transform=`translate(-50%,-50%) scale(${s})`;
+}
+addEventListener('resize',fit); fit();
+
+function countUp(sl){
+  sl.querySelectorAll('.count').forEach(el=>{
+    const to=parseFloat(el.dataset.to), from=parseFloat(el.dataset.start||0), dec=+(el.dataset.dec||0);
+    const t0=performance.now()+700, dur=1800;
+    el.textContent=from.toFixed(dec).replace('.',',');
+    const step=t=>{
+      const p=Math.min(Math.max((t-t0)/dur,0),1), e=1-Math.pow(1-p,4);
+      el.textContent=(from+(to-from)*e).toFixed(dec).replace('.',',');
+      if(p<1 && sl.classList.contains('on')) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+}
+
+function ui(){
+  document.getElementById('count').textContent=String(cur+1).padStart(2,'0')+' / '+N;
+  document.querySelector('#bar i').style.width=((cur+1)/N*100)+'%';
+  document.getElementById('chapter').textContent=slides[cur].dataset.ch||'';
+  document.querySelectorAll('#menu a').forEach((a,i)=>a.classList.toggle('act',i===cur));
+  fxTarget=parseFloat(slides[cur].dataset.fx||.3);
+  history.replaceState(null,'','#'+(cur+1));
+}
+
+function go(n){
+  n=Math.max(0,Math.min(N-1,n));
+  if(n===cur||busy) return;
+  busy=true;
+  const out=slides[cur], inn=slides[n], dir=n>cur?'L':'R';
+  const t=(dir==='L'?inn.dataset.t:out.dataset.t)||'cube', d=DUR[t]||1000;
+  const o=ORI[t][dir];
+  inn.classList.add('on');
+  out.classList.remove('cur'); inn.classList.add('cur');
+  out.style.transformOrigin=o[0]; inn.style.transformOrigin=o[1];
+  out.style.animation=`${t}Out${dir} ${d}ms var(--ease) both`;
+  inn.style.animation=`${t}In${dir} ${d}ms var(--ease) both`;
+  const fl=document.getElementById('flare'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
+  cur=n; ui(); countUp(inn);
+  setTimeout(()=>{
+    out.classList.remove('on'); out.style.animation=''; inn.style.animation='';
+    busy=false;
+  },d+30);
+}
+
+/* init */
+const start=Math.max(0,Math.min(N-1,(parseInt(location.hash.slice(1))||1)-1));
+cur=start; slides[cur].classList.add('on','cur'); ui(); countUp(slides[cur]);
+
+/* menu */
+const menu=document.getElementById('menu'); let lastCh='', html='';
+slides.forEach((s,i)=>{ if(s.dataset.ch!==lastCh){lastCh=s.dataset.ch; html+=`<h3>${lastCh.toUpperCase()}</h3>`;} html+=`<a data-n="${i}"><em>${String(i+1).padStart(2,'0')}</em>${s.dataset.title}</a>`;});
+menu.innerHTML=html; ui();
+menu.addEventListener('click',e=>{const a=e.target.closest('a'); if(a){go(+a.dataset.n); menu.classList.remove('open');}});
+document.getElementById('menuBtn').onclick=()=>menu.classList.toggle('open');
+
+/* controls */
+const next=()=>go(cur+1), prev=()=>go(cur-1);
+document.getElementById('next').onclick=next; document.getElementById('prev').onclick=prev;
+document.getElementById('bar').onclick=e=>{const r=e.currentTarget.getBoundingClientRect(); go(Math.floor((e.clientX-r.left)/r.width*N));};
+const fs=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.();
+document.getElementById('fs').onclick=fs;
+let auto=null; const playBtn=document.getElementById('play');
+const togglePlay=()=>{ if(auto){clearInterval(auto);auto=null;playBtn.innerHTML='<svg class="i" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg>';} else {auto=setInterval(()=>cur<N-1?next():togglePlay(),7000);playBtn.innerHTML='<svg class="i" viewBox="0 0 24 24"><path d="M7 4h3v16H7zM14 4h3v16h-3z"/></svg>';} };
+playBtn.onclick=togglePlay;
+addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();next();}
+  else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==='Home') go(0); else if(e.key==='End') go(N-1);
+  else if(e.key==='f'||e.key==='F') fs();
+  else if(e.key==='m'||e.key==='M') menu.classList.toggle('open');
+  else if(e.key==='p'||e.key==='P') togglePlay();
+  else if(e.key==='Escape') menu.classList.remove('open');
+});
+document.getElementById('viewport').addEventListener('click',e=>{ if(menu.classList.contains('open')){menu.classList.remove('open');return;} (e.clientX>innerWidth*.35)?next():prev(); });
+let tx=0,ty=0;
+addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty; if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)) dx<0?next():prev();},{passive:true});
+let wheelLock=0; addEventListener('wheel',e=>{const now=Date.now(); if(now-wheelLock<1200||Math.abs(e.deltaY)<30) return; wheelLock=now; e.deltaY>0?next():prev();},{passive:true});
+setTimeout(()=>document.getElementById('hint').style.opacity=0,5000);
+
+/* parallax */
+addEventListener('mousemove',e=>{
+  const mx=(e.clientX/innerWidth-.5)*2, my=(e.clientY/innerHeight-.5)*2;
+  deck.style.setProperty('--mx',mx.toFixed(3)); deck.style.setProperty('--my',my.toFixed(3));
+  const u=document.getElementById('ubq'); if(u) u.style.transform=`rotateY(${mx*10}deg) rotateX(${-my*8}deg)`;
+});
+const uiBar=document.getElementById('ui'); let idleT;
+addEventListener('mousemove',()=>{document.body.classList.add('idle-off');clearTimeout(idleT);idleT=setTimeout(()=>document.body.classList.remove('idle-off'),2200);});
+
+/* ---------- gold confetti renderer ---------- */
+const cv=document.getElementById('fx'), cx=cv.getContext('2d');
+const P=[]; let level=0;
+function spawn(init){
+  return {x:Math.random()*1920, y:init?Math.random()*1080:-40, z:Math.random(),
+    s:8+Math.random()*26, rx:Math.random()*6.28, ry:Math.random()*6.28, vr:(Math.random()-.5)*.04, vr2:(Math.random()-.5)*.03,
+    vy:.25+Math.random()*.8, vx:(Math.random()-.5)*.35, hue:Math.random(), tw:Math.random()*6.28};
+}
+for(let i=0;i<110;i++) P.push(spawn(true));
+function frame(){
+  level+= (fxTarget-level)*.03;
+  cx.clearRect(0,0,1920,1080);
+  const count=Math.round(P.length*level);
+  for(let i=0;i<count;i++){
+    const p=P[i];
+    p.y+=p.vy*(.5+p.z); p.x+=p.vx+Math.sin(p.tw+=.01)*.2; p.rx+=p.vr; p.ry+=p.vr2;
+    if(p.y>1120) Object.assign(p,spawn(false));
+    const sx=Math.cos(p.ry), sy=Math.cos(p.rx), sz=p.s*(.4+p.z);
+    const light=.55+.45*Math.abs(Math.sin(p.ry*2+p.rx));
+    cx.save(); cx.translate(p.x,p.y); cx.rotate(p.rx*.5); cx.scale(sx,sy);
+    cx.globalAlpha=(.35+.55*p.z)*Math.min(1,level*1.5);
+    const g=cx.createLinearGradient(-sz,-sz,sz,sz);
+    if(p.hue<.72){g.addColorStop(0,`rgba(255,${200+40*light|0},${120+80*light|0},1)`);g.addColorStop(1,`rgba(${150+60*light|0},${100+40*light|0},40,1)`);}
+    else {g.addColorStop(0,'rgba(255,255,255,.95)');g.addColorStop(1,'rgba(190,200,230,.7)');}
+    cx.fillStyle=g;
+    if(p.z>.75){cx.shadowColor='rgba(255,210,120,.8)';cx.shadowBlur=12;}
+    cx.beginPath(); cx.moveTo(0,-sz); cx.lineTo(sz*.9,sz*.7); cx.lineTo(-sz*.9,sz*.7); cx.closePath(); cx.fill();
+    cx.restore();
+  }
+  requestAnimationFrame(frame);
+}
+frame();
+})();
+</script>
+</body>
+</html>
